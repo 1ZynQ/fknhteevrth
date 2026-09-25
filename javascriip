@@ -1,0 +1,6 @@
+// На старом сайте JavaScript практически не нужен.
+// Оставлен только для структуры проекта.
+
+window.onload = function () {
+    console.log("STRANGE SIGNALS DATABASE");
+};

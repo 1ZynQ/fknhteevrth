@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #050505;
+
+    color: #999999;
+
+    font-family: "Times New Roman", Times, serif;
+    font-size: 13px;
+}
+
+table {
+    font-size: 13px;
+}
+
+a {
+    color: #7777aa;
+    text-decoration: underline;
+}
+
+a:visited {
+    color: #666688;
+}
+
+a:hover {
+    color: #aaaaaa;
+}
+
+
+/* ШАПКА */
+
+.header {
+    height: 90px;
+
+    padding: 10px;
+
+    background: #090909;
+
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+
+    vertical-align: bottom;
+}
+
+.site-title {
+    color: #b5b5b5;
+
+    font-family: "Times New Roman", Times, serif;
+
+    font-size: 30px;
+    font-weight: bold;
+
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    margin-top: 5px;
+
+    color: #555555;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 10px;
+}
+
+
+/* МЕНЮ */
+
+.menu {
+    height: 25px;
+
+    padding: 5px 10px;
+
+    background: #151515;
+
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+
+    font-size: 12px;
+}
+
+
+/* ПРЕДУПРЕЖДЕНИЕ */
+
+.warning {
+    padding: 6px 10px;
+
+    background: #18100f;
+
+    border-left: 1px solid #333333;
+    border-right: 1px solid #333333;
+    border-bottom: 1px solid #333333;
+
+    color: #777777;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 10px;
+}
+
+
+/* ЛЕВАЯ КОЛОНКА */
+
+.left {
+    background: #0c0c0c;
+
+    border-right: 1px solid #333333;
+
+    color: #777777;
+
+    line-height: 1.7;
+}
+
+.left b {
+    color: #999999;
+
+    font-size: 12px;
+}
+
+.left hr {
+    border: 0;
+
+    border-top: 1px solid #333333;
+
+    margin: 6px 0 10px 0;
+}
+
+
+/* КОНТЕНТ */
+
+.content {
+    background: #090909;
+
+    color: #999999;
+
+    line-height: 1.45;
+}
+
+.content h1 {
+    margin-top: 5px;
+
+    color: #bbbbbb;
+
+    font-size: 26px;
+    font-weight: normal;
+}
+
+.content h2 {
+    margin-top: 30px;
+
+    padding-bottom: 3px;
+
+    border-bottom: 1px solid #333333;
+
+    color: #aaaaaa;
+
+    font-size: 19px;
+    font-weight: normal;
+}
+
+.content p {
+    margin: 12px 0;
+}
+
+.content hr {
+    border: 0;
+
+    border-top: 1px solid #333333;
+
+    margin: 20px 0;
+}
+
+
+/* ЗАПИСИ */
+
+.record-title {
+    background: #181818;
+
+    color: #aaaaaa;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+
+/* FOOTER */
+
+.footer {
+    padding: 15px;
+
+    background: #090909;
+
+    border: 1px solid #333333;
+
+    color: #444444;
+
+    text-align: center;
+
+    font-family: "Courier New", monospace;
+
+    font-size: 10px;
+}
