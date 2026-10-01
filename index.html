@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="windows-1251">
-    <title>STRANGE SIGNALS - архив необычных радиосигналов</title>
+    <title>STRANGE SIGNALS - archive of unusual radio signals</title>
     <link rel="stylesheet" href="style.css">
 
     <style>
@@ -34,7 +34,7 @@
         function doSearch() {
             var query = document.getElementById('searchInput').value.trim();
             if (query.length < 2) {
-                alert('Введите минимум 2 символа для поиска');
+                alert('Enter at least 2 characters');
                 return;
             }
             var content = document.getElementById('contentArea');
@@ -42,8 +42,8 @@
             var found = highlightText(content, query);
             document.getElementById('searchInfo').innerHTML =
                 found > 0
-                    ? 'Найдено совпадений: ' + found
-                    : 'Ничего не найдено';
+                    ? 'Matches found: ' + found
+                    : 'Nothing found';
         }
 
         function clearHighlight(el) {
@@ -109,20 +109,20 @@
     <!-- MENU -->
     <tr>
         <td class="menu">
-            <a href="index.html">Главная</a> |
-            <a href="#signals">Сигналы</a> |
-            <a href="#numbers">Числовые станции</a> |
-            <a href="#sounds">Звуки</a> |
-            <a href="#new">Записи</a> |
-            <a href="#about">Об архиве</a>
+            <a href="index.html">Home</a> |
+            <a href="#signals">Signals</a> |
+            <a href="#numbers">Numbers Stations</a> |
+            <a href="#sounds">Sounds</a> |
+            <a href="#new">Records</a> |
+            <a href="#about">About</a>
         </td>
     </tr>
 
     <!-- WARNING -->
     <tr>
         <td class="warning">
-            [ ВНИМАНИЕ ] Некоторые записи могут содержать
-            непроверенную информацию.
+            [ WARNING ] Some records may contain
+            unverified information.
         </td>
     </tr>
 
@@ -137,33 +137,33 @@
                     <!-- LEFT -->
                     <td width="170" valign="top" class="left">
 
-                        <b>РАЗДЕЛЫ</b>
+                        <b>SECTIONS</b>
                         <hr>
-                        <a href="#signals">» Радиосигналы</a><br>
-                        <a href="#numbers">» Числовые станции</a><br>
-                        <a href="#sounds">» Необычные звуки</a><br>
-                        <a href="#new">» Новые записи</a><br>
-                        <a href="#about">» Об архиве</a><br>
-                        <a href="#links">» Ссылки</a>
+                        <a href="#signals">» Radio Signals</a><br>
+                        <a href="#numbers">» Numbers Stations</a><br>
+                        <a href="#sounds">» Unusual Sounds</a><br>
+                        <a href="#new">» New Records</a><br>
+                        <a href="#about">» About</a><br>
+                        <a href="#links">» Links</a>
 
                         <br><br>
 
-                        <b>ПОИСК</b>
+                        <b>SEARCH</b>
                         <hr>
 
                         <div class="search-box">
                             <input type="text" id="searchInput"
-                                   placeholder="по архиву..."
+                                   placeholder="search archive..."
                                    onkeydown="if(event.key==='Enter'){doSearch();}">
-                            <button onclick="doSearch()">Найти</button>
-                            <button onclick="resetSearch()">Сброс</button>
+                            <button onclick="doSearch()">Find</button>
+                            <button onclick="resetSearch()">Reset</button>
                         </div>
 
                         <div class="search-info" id="searchInfo"></div>
 
                         <br><br>
 
-                        <b>СТАТУС</b>
+                        <b>STATUS</b>
                         <hr>
 
                         Database:<br>
@@ -192,20 +192,19 @@
                     <td valign="top" class="content" id="contentArea">
 
                         <a name="signals"></a>
-                        <h1>Необычные радиосигналы</h1>
+                        <h1>Unusual Radio Signals</h1>
 
                         <p>
-                            Этот небольшой архив посвящён
-                            странным радиопередачам и сигналам,
-                            которые действительно существуют
-                            или были зарегистрированы.
+                            This small archive is dedicated to
+                            strange radio transmissions and signals
+                            that really exist or have been recorded.
                         </p>
 
                         <p>
-                            Здесь нет мистических объяснений.
-                            Если происхождение сигнала неизвестно,
-                            это означает только то, что его источник
-                            не установлен.
+                            There are no mystical explanations here.
+                            If the origin of a signal is unknown,
+                            it only means that its source
+                            has not been identified.
                         </p>
 
                         <hr>
@@ -214,18 +213,18 @@
                         <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
                             <tr><td class="record-title">FILE 001 — UVB-76</td></tr>
                             <tr><td>
-                                <b>Частота:</b> 4625 кГц<br>
-                                <b>Диапазон:</b> короткие волны<br>
-                                <b>Тип:</b> голосовые сообщения / повторяющийся сигнал
+                                <b>Frequency:</b> 4625 kHz<br>
+                                <b>Band:</b> shortwave<br>
+                                <b>Type:</b> voice messages / repeating signal
                                 <br><br>
-                                Радиостанция, известная среди
-                                радиолюбителей благодаря
-                                постоянному повторяющемуся
-                                звуковому сигналу.
+                                A radio station known among
+                                radio amateurs for its
+                                constant repeating
+                                audio signal.
                                 <br><br>
-                                Иногда вместо сигнала
-                                передаются голосовые сообщения
-                                с отдельными словами и числами.
+                                Sometimes instead of the signal,
+                                voice messages are transmitted
+                                with individual words and numbers.
                                 <br><br>
                                 <font color="#666666">STATUS: OBSERVED</font>
                             </td></tr>
@@ -237,18 +236,18 @@
                         <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
                             <tr><td class="record-title">FILE 002 — THE BLOOP</td></tr>
                             <tr><td>
-                                <b>Год:</b> 1997<br>
-                                <b>Источник записи:</b> NOAA
+                                <b>Year:</b> 1997<br>
+                                <b>Recording source:</b> NOAA
                                 <br><br>
-                                Очень мощный подводный звук,
-                                зарегистрированный системой
-                                гидрофонов в южной части Тихого океана.
+                                A very powerful underwater sound
+                                recorded by a hydrophone system
+                                in the southern Pacific Ocean.
                                 <br><br>
-                                Первоначально происхождение
-                                сигнала было неизвестно.
-                                Позднее NOAA связала его
-                                характеристики с крупными
-                                ледовыми процессами.
+                                Initially the origin of the
+                                signal was unknown.
+                                Later NOAA linked its
+                                characteristics to large
+                                ice processes.
                                 <br><br>
                                 <font color="#666666">STATUS: EXPLAINED</font>
                             </td></tr>
@@ -260,18 +259,18 @@
                         <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
                             <tr><td class="record-title">FILE 003 — TAOS HUM</td></tr>
                             <tr><td>
-                                <b>Место:</b> Таос, Нью-Мексико<br>
-                                <b>Тип:</b> низкочастотный гул
+                                <b>Location:</b> Taos, New Mexico<br>
+                                <b>Type:</b> low-frequency hum
                                 <br><br>
-                                Некоторые жители сообщают
-                                о постоянном низком гуле,
-                                который слышен внутри помещений.
+                                Some residents report
+                                a constant low hum
+                                that is audible indoors.
                                 <br><br>
-                                Источник всех подобных
-                                сообщений не был установлен.
-                                Возможны различные объяснения,
-                                включая промышленные и
-                                акустические источники.
+                                The source of all such
+                                reports has not been identified.
+                                Various explanations are possible,
+                                including industrial and
+                                acoustic sources.
                                 <br><br>
                                 <font color="#666666">STATUS: INVESTIGATED</font>
                             </td></tr>
@@ -280,56 +279,56 @@
                         <br>
 
                         <a name="numbers"></a>
-                        <h2>Числовые станции</h2>
+                        <h2>Numbers Stations</h2>
 
                         <p>
-                            Коротковолновые радиопередачи,
-                            содержащие последовательности чисел,
-                            букв или кодовых слов.
+                            Shortwave radio transmissions
+                            containing sequences of numbers,
+                            letters or code words.
                         </p>
 
                         <p>
-                            Некоторые станции известны
-                            десятилетиями. Назначение отдельных
-                            передач официально не раскрывается.
+                            Some stations have been known
+                            for decades. The purpose of individual
+                            transmissions is not officially disclosed.
                         </p>
 
                         <a name="sounds"></a>
-                        <h2>Необычные звуки</h2>
+                        <h2>Unusual Sounds</h2>
 
                         <p>
-                            Подводные сигналы, атмосферные явления,
-                            низкочастотный гул и другие записи,
-                            происхождение которых обсуждалось
-                            исследователями.
+                            Underwater signals, atmospheric phenomena,
+                            low-frequency hum and other recordings
+                            whose origin has been discussed
+                            by researchers.
                         </p>
 
                         <hr>
 
                         <!-- NEW SECTION -->
                         <a name="new"></a>
-                        <h2>Новые записи</h2>
+                        <h2>New Records</h2>
 
                         <p>
-                            Раздел обновляется по мере поступления
-                            новых материалов. Все записи приведены
-                            в том виде, в котором были получены.
+                            This section is updated as new
+                            material arrives. All records are given
+                            in the form in which they were received.
                         </p>
 
                         <!-- SIGNAL 4 -->
                         <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
                             <tr><td class="record-title">FILE 004 — WOW! SIGNAL</td></tr>
                             <tr><td>
-                                <b>Год:</b> 1977<br>
-                                <b>Источник:</b> радиотелескоп «Большое ухо», Огайо
+                                <b>Year:</b> 1977<br>
+                                <b>Source:</b> "Big Ear" radio telescope, Ohio
                                 <br><br>
-                                Узкополосный радиосигнал,
-                                зафиксированный в ходе поиска
-                                внеземных сигналов. Длился 72 секунды.
+                                A narrow-band radio signal
+                                recorded during a search for
+                                extraterrestrial signals. It lasted 72 seconds.
                                 <br><br>
-                                Его характеристики до сих пор
-                                вызывают споры. Повторно
-                                сигнал зафиксировать не удалось.
+                                Its characteristics still
+                                cause debate. The signal
+                                has never been recorded again.
                                 <br><br>
                                 <font color="#666666">STATUS: UNRESOLVED</font>
                             </td></tr>
@@ -341,17 +340,17 @@
                         <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
                             <tr><td class="record-title">FILE 005 — NUMBERS STATION "E11"</td></tr>
                             <tr><td>
-                                <b>Частота:</b> разные КВ-диапазоны<br>
-                                <b>Тип:</b> голос / числа
+                                <b>Frequency:</b> various SW bands<br>
+                                <b>Type:</b> voice / numbers
                                 <br><br>
-                                Одна из самых известных
-                                европейских числовых станций.
-                                Передаёт последовательности
-                                чисел женским голосом.
+                                One of the most famous
+                                European numbers stations.
+                                It transmits sequences of
+                                numbers in a female voice.
                                 <br><br>
-                                Содержание передач официально
-                                не комментируется. Станция
-                                активна по сей день.
+                                The content of the transmissions
+                                is not officially commented on.
+                                The station is still active today.
                                 <br><br>
                                 <font color="#666666">STATUS: ACTIVE</font>
                             </td></tr>
@@ -363,15 +362,16 @@
                         <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
                             <tr><td class="record-title">FILE 006 — JUPITER RADIO BURSTS</td></tr>
                             <tr><td>
-                                <b>Источник:</b> магнитосфера Юпитера<br>
-                                <b>Тип:</b> природный радиосигнал
+                                <b>Source:</b> Jupiter's magnetosphere<br>
+                                <b>Type:</b> natural radio signal
                                 <br><br>
-                                Мощные всплески радиоизлучения,
-                                регистрируемые наземными
-                                радиотелескопами.
+                                Powerful bursts of radio emission
+                                registered by ground-based
+                                radio telescopes.
                                 <br><br>
-                                Связаны с взаимодействием
-                                плазмы и магнитного поля планеты.
+                                They are linked to the interaction
+                                of plasma and the planet's
+                                magnetic field.
                                 <br><br>
                                 <font color="#666666">STATUS: EXPLAINED</font>
                             </td></tr>
@@ -380,32 +380,32 @@
                         <br>
 
                         <a name="about"></a>
-                        <h2>Об архиве</h2>
+                        <h2>About</h2>
 
                         <p>
-                            Сайт создан как небольшой независимый
-                            каталог материалов о радиосигналах.
+                            This site was created as a small independent
+                            catalogue of material about radio signals.
                         </p>
 
                         <p>
-                            Материалы следует воспринимать
-                            критически. Неизвестное происхождение
-                            записи не означает сверхъестественное
-                            происхождение.
+                            The material should be treated
+                            critically. An unknown origin of a
+                            recording does not mean a supernatural
+                            origin.
                         </p>
 
                         <a name="links"></a>
-                        <h2>Ссылки</h2>
+                        <h2>Links</h2>
 
                         <p>
                             <a href="https://www.noaa.gov/">NOAA</a>
-                            — материалы об океанических звуках.
+                            — material on ocean sounds.
                         </p>
 
                         <p>
                             <a href="https://www.arrl.org/">ARRL</a>
-                            — информация о радиолюбительстве
-                            и коротковолновой связи.
+                            — information on amateur radio
+                            and shortwave communication.
                         </p>
 
                     </td>
