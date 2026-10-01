@@ -4,6 +4,92 @@
     <meta charset="windows-1251">
     <title>STRANGE SIGNALS - архив необычных радиосигналов</title>
     <link rel="stylesheet" href="style.css">
+
+    <style>
+        .search-box { margin-top: 10px; }
+        .search-box input {
+            width: 140px;
+            font-family: "Courier New", monospace;
+            font-size: 11px;
+            background: #111;
+            color: #00ff00;
+            border: 1px solid #444;
+            padding: 3px;
+        }
+        .search-box button {
+            font-family: "Courier New", monospace;
+            font-size: 11px;
+            background: #222;
+            color: #00ff00;
+            border: 1px solid #444;
+            padding: 3px 6px;
+            cursor: pointer;
+        }
+        .search-box button:hover { background: #333; }
+        .search-info { font-size: 10px; color: #777; margin-top: 5px; }
+        .highlight { background: #ffff00; color: #000; }
+    </style>
+
+    <script>
+        function doSearch() {
+            var query = document.getElementById('searchInput').value.trim();
+            if (query.length < 2) {
+                alert('Введите минимум 2 символа для поиска');
+                return;
+            }
+            var content = document.getElementById('contentArea');
+            clearHighlight(content);
+            var found = highlightText(content, query);
+            document.getElementById('searchInfo').innerHTML =
+                found > 0
+                    ? 'Найдено совпадений: ' + found
+                    : 'Ничего не найдено';
+        }
+
+        function clearHighlight(el) {
+            var marks = el.querySelectorAll('mark.highlight');
+            for (var i = 0; i < marks.length; i++) {
+                var parent = marks[i].parentNode;
+                parent.replaceChild(document.createTextNode(marks[i].textContent), marks[i]);
+                parent.normalize();
+            }
+        }
+
+        function highlightText(el, query) {
+            var count = 0;
+            var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+            var nodes = [];
+            while (walker.nextNode()) { nodes.push(walker.currentNode); }
+            for (var i = 0; i < nodes.length; i++) {
+                var node = nodes[i];
+                var text = node.nodeValue;
+                var lowerText = text.toLowerCase();
+                var lowerQuery = query.toLowerCase();
+                var index = lowerText.indexOf(lowerQuery);
+                if (index !== -1) {
+                    var span = document.createElement('span');
+                    var before = text.substring(0, index);
+                    var match = text.substring(index, index + query.length);
+                    var after = text.substring(index + query.length);
+                    var mark = document.createElement('mark');
+                    mark.className = 'highlight';
+                    mark.textContent = match;
+                    span.appendChild(document.createTextNode(before));
+                    span.appendChild(mark);
+                    span.appendChild(document.createTextNode(after));
+                    node.parentNode.replaceChild(span, node);
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        function resetSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchInfo').innerHTML = '';
+            clearHighlight(document.getElementById('contentArea'));
+        }
+    </script>
 </head>
 
 <body>
@@ -15,42 +101,30 @@
     <!-- HEADER -->
     <tr>
         <td class="header">
-
-            <div class="site-title">
-                STRANGE SIGNALS
-            </div>
-
-            <div class="subtitle">
-                PRIVATE RADIO ARCHIVE / EST. 1999
-            </div>
-
+            <div class="site-title">STRANGE SIGNALS</div>
+            <div class="subtitle">PRIVATE RADIO ARCHIVE / EST. 1999</div>
         </td>
     </tr>
-
 
     <!-- MENU -->
     <tr>
         <td class="menu">
-
             <a href="index.html">Главная</a> |
             <a href="#signals">Сигналы</a> |
-            <a href="#about">Об архиве</a> |
-            <a href="#links">Ссылки</a>
-
+            <a href="#numbers">Числовые станции</a> |
+            <a href="#sounds">Звуки</a> |
+            <a href="#new">Записи</a> |
+            <a href="#about">Об архиве</a>
         </td>
     </tr>
-
 
     <!-- WARNING -->
     <tr>
         <td class="warning">
-
             [ ВНИМАНИЕ ] Некоторые записи могут содержать
             непроверенную информацию.
-
         </td>
     </tr>
-
 
     <!-- MAIN -->
     <tr>
@@ -64,19 +138,32 @@
                     <td width="170" valign="top" class="left">
 
                         <b>РАЗДЕЛЫ</b>
-
                         <hr>
-
                         <a href="#signals">» Радиосигналы</a><br>
                         <a href="#numbers">» Числовые станции</a><br>
                         <a href="#sounds">» Необычные звуки</a><br>
+                        <a href="#new">» Новые записи</a><br>
                         <a href="#about">» Об архиве</a><br>
                         <a href="#links">» Ссылки</a>
 
                         <br><br>
 
-                        <b>СТАТУС</b>
+                        <b>ПОИСК</b>
+                        <hr>
 
+                        <div class="search-box">
+                            <input type="text" id="searchInput"
+                                   placeholder="по архиву..."
+                                   onkeydown="if(event.key==='Enter'){doSearch();}">
+                            <button onclick="doSearch()">Найти</button>
+                            <button onclick="resetSearch()">Сброс</button>
+                        </div>
+
+                        <div class="search-info" id="searchInfo"></div>
+
+                        <br><br>
+
+                        <b>СТАТУС</b>
                         <hr>
 
                         Database:<br>
@@ -85,17 +172,12 @@
                         <br><br>
 
                         Last update:<br>
-                        <font color="#666666">
-                        14.11.1999
-                        </font>
+                        <font color="#666666">14.11.1999</font>
 
                         <br><br>
 
                         Visitors:<br>
-
-                        <font color="#777777">
-                        001847
-                        </font>
+                        <font color="#777777">001847</font>
 
                         <br><br><br>
 
@@ -106,15 +188,11 @@
 
                     </td>
 
-
                     <!-- CONTENT -->
-                    <td valign="top" class="content">
+                    <td valign="top" class="content" id="contentArea">
 
                         <a name="signals"></a>
-
-                        <h1>
-                            Необычные радиосигналы
-                        </h1>
+                        <h1>Необычные радиосигналы</h1>
 
                         <p>
                             Этот небольшой архив посвящён
@@ -132,147 +210,77 @@
 
                         <hr>
 
-
                         <!-- SIGNAL 1 -->
-
-                        <table width="100%" cellpadding="6" cellspacing="0" border="1"
-                               bordercolor="#333333">
-
-                            <tr>
-                                <td class="record-title">
-                                    FILE 001 — UVB-76
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-
-                                    <b>Частота:</b> 4625 кГц<br>
-                                    <b>Диапазон:</b> короткие волны<br>
-                                    <b>Тип:</b> голосовые сообщения / повторяющийся сигнал
-
-                                    <br><br>
-
-                                    Радиостанция, известная среди
-                                    радиолюбителей благодаря
-                                    постоянному повторяющемуся
-                                    звуковому сигналу.
-
-                                    <br><br>
-
-                                    Иногда вместо сигнала
-                                    передаются голосовые сообщения
-                                    с отдельными словами и числами.
-
-                                    <br><br>
-
-                                    <font color="#666666">
-                                    STATUS: OBSERVED
-                                    </font>
-
-                                </td>
-                            </tr>
-
+                        <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
+                            <tr><td class="record-title">FILE 001 — UVB-76</td></tr>
+                            <tr><td>
+                                <b>Частота:</b> 4625 кГц<br>
+                                <b>Диапазон:</b> короткие волны<br>
+                                <b>Тип:</b> голосовые сообщения / повторяющийся сигнал
+                                <br><br>
+                                Радиостанция, известная среди
+                                радиолюбителей благодаря
+                                постоянному повторяющемуся
+                                звуковому сигналу.
+                                <br><br>
+                                Иногда вместо сигнала
+                                передаются голосовые сообщения
+                                с отдельными словами и числами.
+                                <br><br>
+                                <font color="#666666">STATUS: OBSERVED</font>
+                            </td></tr>
                         </table>
 
                         <br>
-
 
                         <!-- SIGNAL 2 -->
-
-                        <table width="100%" cellpadding="6" cellspacing="0" border="1"
-                               bordercolor="#333333">
-
-                            <tr>
-                                <td class="record-title">
-                                    FILE 002 — THE BLOOP
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-
-                                    <b>Год:</b> 1997<br>
-                                    <b>Источник записи:</b> NOAA
-
-                                    <br><br>
-
-                                    Очень мощный подводный звук,
-                                    зарегистрированный системой
-                                    гидрофонов в южной части Тихого океана.
-
-                                    <br><br>
-
-                                    Первоначально происхождение
-                                    сигнала было неизвестно.
-                                    Позднее NOAA связала его
-                                    характеристики с крупными
-                                    ледовыми процессами.
-
-                                    <br><br>
-
-                                    <font color="#666666">
-                                    STATUS: EXPLAINED
-                                    </font>
-
-                                </td>
-                            </tr>
-
+                        <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
+                            <tr><td class="record-title">FILE 002 — THE BLOOP</td></tr>
+                            <tr><td>
+                                <b>Год:</b> 1997<br>
+                                <b>Источник записи:</b> NOAA
+                                <br><br>
+                                Очень мощный подводный звук,
+                                зарегистрированный системой
+                                гидрофонов в южной части Тихого океана.
+                                <br><br>
+                                Первоначально происхождение
+                                сигнала было неизвестно.
+                                Позднее NOAA связала его
+                                характеристики с крупными
+                                ледовыми процессами.
+                                <br><br>
+                                <font color="#666666">STATUS: EXPLAINED</font>
+                            </td></tr>
                         </table>
 
                         <br>
 
-
                         <!-- SIGNAL 3 -->
-
-                        <table width="100%" cellpadding="6" cellspacing="0" border="1"
-                               bordercolor="#333333">
-
-                            <tr>
-                                <td class="record-title">
-                                    FILE 003 — TAOS HUM
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-
-                                    <b>Место:</b> Таос, Нью-Мексико<br>
-                                    <b>Тип:</b> низкочастотный гул
-
-                                    <br><br>
-
-                                    Некоторые жители сообщают
-                                    о постоянном низком гуле,
-                                    который слышен внутри помещений.
-
-                                    <br><br>
-
-                                    Источник всех подобных
-                                    сообщений не был установлен.
-                                    Возможны различные объяснения,
-                                    включая промышленные и
-                                    акустические источники.
-
-                                    <br><br>
-
-                                    <font color="#666666">
-                                    STATUS: INVESTIGATED
-                                    </font>
-
-                                </td>
-                            </tr>
-
+                        <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
+                            <tr><td class="record-title">FILE 003 — TAOS HUM</td></tr>
+                            <tr><td>
+                                <b>Место:</b> Таос, Нью-Мексико<br>
+                                <b>Тип:</b> низкочастотный гул
+                                <br><br>
+                                Некоторые жители сообщают
+                                о постоянном низком гуле,
+                                который слышен внутри помещений.
+                                <br><br>
+                                Источник всех подобных
+                                сообщений не был установлен.
+                                Возможны различные объяснения,
+                                включая промышленные и
+                                акустические источники.
+                                <br><br>
+                                <font color="#666666">STATUS: INVESTIGATED</font>
+                            </td></tr>
                         </table>
-
 
                         <br>
 
                         <a name="numbers"></a>
-
-                        <h2>
-                            Числовые станции
-                        </h2>
+                        <h2>Числовые станции</h2>
 
                         <p>
                             Коротковолновые радиопередачи,
@@ -286,12 +294,8 @@
                             передач официально не раскрывается.
                         </p>
 
-
                         <a name="sounds"></a>
-
-                        <h2>
-                            Необычные звуки
-                        </h2>
+                        <h2>Необычные звуки</h2>
 
                         <p>
                             Подводные сигналы, атмосферные явления,
@@ -300,12 +304,83 @@
                             исследователями.
                         </p>
 
+                        <hr>
+
+                        <!-- NEW SECTION -->
+                        <a name="new"></a>
+                        <h2>Новые записи</h2>
+
+                        <p>
+                            Раздел обновляется по мере поступления
+                            новых материалов. Все записи приведены
+                            в том виде, в котором были получены.
+                        </p>
+
+                        <!-- SIGNAL 4 -->
+                        <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
+                            <tr><td class="record-title">FILE 004 — WOW! SIGNAL</td></tr>
+                            <tr><td>
+                                <b>Год:</b> 1977<br>
+                                <b>Источник:</b> радиотелескоп «Большое ухо», Огайо
+                                <br><br>
+                                Узкополосный радиосигнал,
+                                зафиксированный в ходе поиска
+                                внеземных сигналов. Длился 72 секунды.
+                                <br><br>
+                                Его характеристики до сих пор
+                                вызывают споры. Повторно
+                                сигнал зафиксировать не удалось.
+                                <br><br>
+                                <font color="#666666">STATUS: UNRESOLVED</font>
+                            </td></tr>
+                        </table>
+
+                        <br>
+
+                        <!-- SIGNAL 5 -->
+                        <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
+                            <tr><td class="record-title">FILE 005 — NUMBERS STATION "E11"</td></tr>
+                            <tr><td>
+                                <b>Частота:</b> разные КВ-диапазоны<br>
+                                <b>Тип:</b> голос / числа
+                                <br><br>
+                                Одна из самых известных
+                                европейских числовых станций.
+                                Передаёт последовательности
+                                чисел женским голосом.
+                                <br><br>
+                                Содержание передач официально
+                                не комментируется. Станция
+                                активна по сей день.
+                                <br><br>
+                                <font color="#666666">STATUS: ACTIVE</font>
+                            </td></tr>
+                        </table>
+
+                        <br>
+
+                        <!-- SIGNAL 6 -->
+                        <table width="100%" cellpadding="6" cellspacing="0" border="1" bordercolor="#333333">
+                            <tr><td class="record-title">FILE 006 — JUPITER RADIO BURSTS</td></tr>
+                            <tr><td>
+                                <b>Источник:</b> магнитосфера Юпитера<br>
+                                <b>Тип:</b> природный радиосигнал
+                                <br><br>
+                                Мощные всплески радиоизлучения,
+                                регистрируемые наземными
+                                радиотелескопами.
+                                <br><br>
+                                Связаны с взаимодействием
+                                плазмы и магнитного поля планеты.
+                                <br><br>
+                                <font color="#666666">STATUS: EXPLAINED</font>
+                            </td></tr>
+                        </table>
+
+                        <br>
 
                         <a name="about"></a>
-
-                        <h2>
-                            Об архиве
-                        </h2>
+                        <h2>Об архиве</h2>
 
                         <p>
                             Сайт создан как небольшой независимый
@@ -319,24 +394,16 @@
                             происхождение.
                         </p>
 
-
                         <a name="links"></a>
-
-                        <h2>
-                            Ссылки
-                        </h2>
+                        <h2>Ссылки</h2>
 
                         <p>
-                            <a href="https://www.noaa.gov/">
-                                NOAA
-                            </a>
+                            <a href="https://www.noaa.gov/">NOAA</a>
                             — материалы об океанических звуках.
                         </p>
 
                         <p>
-                            <a href="https://www.arrl.org/">
-                                ARRL
-                            </a>
+                            <a href="https://www.arrl.org/">ARRL</a>
                             — информация о радиолюбительстве
                             и коротковолновой связи.
                         </p>
@@ -350,21 +417,14 @@
         </td>
     </tr>
 
-
     <!-- FOOTER -->
     <tr>
         <td class="footer">
-
             STRANGE SIGNALS © 1999-2006
-
             <br>
-
             No commercial use.
-
             <br><br>
-
             [ BEST VIEWED WITH NETSCAPE NAVIGATOR ]
-
         </td>
     </tr>
 
